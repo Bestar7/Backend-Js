@@ -1,0 +1,11 @@
+######### NORMAL OPERATION  ###########
+
+### Read all questions
+GET http://localhost:3000/questions
+
+### Read question identified by 2
+GET http://localhost:3000/questions/2
+
+### READ a random question 
+GET http://localhost:3000/questions/{{$randomInt 1 4}}
+
