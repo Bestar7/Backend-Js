@@ -1,11 +1,11 @@
 ######### NORMAL OPERATION  ###########
 
-### Read all questions
+### Read all pizzas
 GET http://localhost:3000/questions
 
-### Read question identified by 2
-GET http://localhost:3000/questions/2
+### Read pizza identified by 3,2 doesn't exist
+GET http://localhost:3000/questions/3
 
-### READ a random question 
+###Read question by random int
+
 GET http://localhost:3000/questions/{{$randomInt 1 4}}
-
