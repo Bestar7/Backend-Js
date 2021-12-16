@@ -3,7 +3,7 @@ const { parse, serialize } = require("../utils/json");
 
 const jsonDbPath = __dirname + "/../data/questions.json";
 
-// Default pizza menu
+// Default questions list
 const defaultQuestions = [
   {id:1,
     questions:"Which of these Bojack Horseman characters is a human?",
@@ -38,7 +38,7 @@ class Questions {
   }
 
   /**
-   * Returns all pizzas
+   * Returns all questions
    * @returns {Array} Array of pizzas
    */
   getAll() {
@@ -47,7 +47,7 @@ class Questions {
   }
 
   /**
-   * Returns the pizza identified by id
+   * Returns the questions identified by id
    * @param {number} id - id of the pizza to find
    * @returns {object} the pizza found or undefined if the id does not lead to a pizza
    */
@@ -59,11 +59,7 @@ class Questions {
     return questions[foundIndex];
   }
 
-  /**
-   * Add a pizza in the DB and returns the added pizza (containing a new id)
-   * @param {object} body - it contains all required data to create a pizza
-   * @returns {object} the pizza that was created (with id)
-   */
+  
 
 }
 
