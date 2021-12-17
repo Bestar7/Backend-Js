@@ -7,5 +7,16 @@ GET http://localhost:3000/questions
 GET http://localhost:3000/questions/3
 
 ###Read question by random int
-
 GET http://localhost:3000/questions/{{$randomInt 1 4}}
+
+###Read only the question phrase
+GET http://localhost:3000/questions/question/2
+
+###Read the correct answer of a question
+
+GET http://localhost:3000/questions/answer/1
+
+###read the list of incorrect answers
+GET http://localhost:3000/questions/incorrect/3
+
+

@@ -59,6 +59,30 @@ class Questions {
     return questions[foundIndex];
   }
 
+  getQuestion(id){
+    const questions= parse(this.jsonDbPath, this.defaultQuestions);
+    const foundIndex= questions.findIndex((question)=> question.id==id);
+    if(foundIndex<0)return;
+
+    return questions[foundIndex].question;
+  }
+
+  getAnswer(id){
+    const questions= parse(this.jsonDbPath, this.defaultQuestions);
+    const foundIndex= questions.findIndex((question)=> question.id==id);
+    if(foundIndex<0)return;
+
+    return questions[foundIndex].correct_answer;
+  }
+
+  getIncorrect(id){
+    const questions= parse(this.jsonDbPath, this.defaultQuestions);
+    const foundIndex= questions.findIndex((question)=> question.id==id);
+    if(foundIndex<0)return;
+
+    return questions[foundIndex].incorrect_answers;
+  }
+
   
 
 }

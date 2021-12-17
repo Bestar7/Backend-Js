@@ -21,4 +21,31 @@ router.get("/:id", function (req, res) {
   return res.json(question);
 });
 
+
+router.get("/question/:id", function(req,res){
+  const result =   questionModel.getQuestion(req.params.id)
+  if(!result) res.sendStatus(404).end();
+  res.send(result);
+});
+
+
+router.get("/answer/:id", function(req,res){
+  console.log(`GET /questions/answer/${req.params.id}`);
+
+  const question = questionModel.getAnswer(req.params.id);
+  // Send an error code '404 Not Found' if the question was not found
+  if (!question) return res.status(404).end();
+
+  return res.json(question);
+});
+
+router.get("/incorrect/:id", function(req,res){
+  console.log(`GET /questions/incorrect/${req.params.id}`);
+
+  const question = questionModel.getIncorrect(req.params.id);
+  // Send an error code '404 Not Found' if the question was not found
+  if (!question) return res.status(404).end();
+
+  return res.json(question);
+});
 module.exports = router;
