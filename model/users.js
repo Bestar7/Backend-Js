@@ -6,13 +6,13 @@ const LIFETIME_JWT = 24 * 60 * 60 * 1000; // in ms : 24 * 60 * 60 * 1000 = 24h
 const jwtSecret = "ilovemypizza!";
 const jsonDbPath = __dirname + "/../data/users.json";
 const saltRounds = 10;
-// Default pizza menu
+// Default users list
 const defaultUsers = [
   {id:1,
     email:"quentin.garwig@hotmail.com",
     password:"$2y$10$LApdSBHDMTC1j/KVBe0umeq8zwljgjvrXu3dciA0IG9B.xr4OcN1m",
     pseudo:null,
-    score:INT('100')
+    score:0
 
   },
   
@@ -35,8 +35,8 @@ class Users {
   }
 
   /**
-   * Returns all pizzas
-   * @returns {Array} Array of pizzas
+   * Returns all users
+   * @returns {Array} Array of users
    */
   getAll() {
     const users = parse(this.jsonDbPath, this.defaultUsers);
@@ -45,8 +45,8 @@ class Users {
 
   /**
    * Returns the user identified by id
-   * @param {number} id - id of the pizza to find
-   * @returns {object} the pizza found or undefined if the id does not lead to a pizza
+   * @param {number} id - id of the user to find
+   * @returns {object} the user found
    */
   getOne(id) {
     const users = parse(this.jsonDbPath, this.defaultUsers);
@@ -55,7 +55,7 @@ class Users {
 
     return users[foundIndex];
   }
-
+  //get user by its email
   getOneByEmail(email) {
     const users = parse(this.jsonDbPath, this.defaultUsers);
     const foundIndex = users.findIndex((user) => user.email == email);
@@ -63,7 +63,7 @@ class Users {
 
     return users[foundIndex];
   }
-
+  //create a new user 
   async register(email,password){
     let user= await this.getOneByEmail(email);
     if(user){ //todo better
@@ -83,7 +83,7 @@ class Users {
     return newUser;
 
   }
-
+  //login sbdy
   async login(email, password) {
     const userFound = this.getOneByEmail(email);
     if (!userFound) return;
@@ -115,7 +115,7 @@ class Users {
 
     return nextId;
   }
-
+  //add points to a player by its id 
   addPoints(id,score){
     const users = parse(this.jsonDbPath, this.defaultUsers);
     const foundIndex = users.findIndex((user) => user.id == id);
@@ -123,7 +123,7 @@ class Users {
     users[foundIndex].score+=score;
     return users[foundIndex].score;
   }
-
+  //get score from a player by its id 
   getScore(id){
     const users = parse(this.jsonDbPath, this.defaultUsers);
     const foundIndex = users.findIndex((user) => user.id == id);

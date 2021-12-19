@@ -9,7 +9,7 @@ const {Users} =require("../model/users");
 
 const usersModel = new Users();
 
-// Default pizza menu
+// Default salons
 const defaultSalons = [
   {id:1,
     users:["quentin.garwig@gmail.be","Princess Carolyn","Tom Jumbo-Grumbo"]
@@ -33,8 +33,8 @@ class Salons {
   }
 
   /**
-   * Returns all pizzas
-   * @returns {Array} Array of pizzas
+   * Returns all salons
+   * @returns {Array} Array of salons
    */
   getAll() {
     const salons = parse(this.jsonDbPath, this.defaultSalons);
@@ -42,9 +42,9 @@ class Salons {
   }
 
   /**
-   * Returns the pizza identified by id
-   * @param {number} id - id of the pizza to find
-   * @returns {object} the pizza found or undefined if the id does not lead to a pizza
+   * Returns the salon identified by id
+   * @param {number} id - id of the salon to find
+   * @returns {object} the salon found 
    */
   getOne(id) {
     const salons = parse(this.jsonDbPath, this.defaultSalons);
@@ -53,7 +53,7 @@ class Salons {
 
     return salons[foundIndex];
   }
-
+  //delete a salon from the array 
   deleteOne(id) {
     const salons = parse(this.jsonDbPath, this.defaultSalons);
     const foundIndex = salons.findIndex((salon) => salon.id == id);
@@ -63,9 +63,10 @@ class Salons {
 
     return salonDeleted[0];
   }
-
+  //create a new salon 
   creerSalon(body){
     const salons = parse(this.jsonDbPath, this.defaultSalons);
+    
     const newSalon = {
       id: this.getNextId(),
       host:body.player,
@@ -74,19 +75,19 @@ class Salons {
       players:[], 
 
     };
-
+    //push le nouveau salon a la liste des salons existants 
     salons.push(newSalon);
     serialize(this.jsonDbPath,salons);
     return newSalon;
   }
-  
+  //ajouter des questions au salon(TODO)
   async addQuestions(){
     for(let i =0; i < 10; i++){
       
        
       }
   }
-
+  //ajouter un joueur au salon == rejoindre un salon 
   addPlayer(id,idSalon){
     let salon= this.getOne(idSalon);
     let tabSalon= salon.players;
@@ -103,7 +104,7 @@ class Salons {
     return this.addRoomById(idDuSalon,hostSalon,classementSalon,readySalon,players);
   }
     
-    
+   //methode necessaire a la methode addPLayer 
   addRoomById(id, host, classement, ready, players) {
     const salons = parse(this.jsonDbPath, this.defaultSalons);
     const newSalon = {

@@ -21,13 +21,13 @@ const defaultQuestions = [
     incorrect_answers:["Murdoc Niccals","Noodle","Russel Hobbs"]
   },
 ];
-
+//questions constructor
 class Questions {
   constructor(dbPath = jsonDbPath, defaultItems = defaultQuestions) {
     this.jsonDbPath = dbPath;
     this.defaultQuestions = defaultItems;
   }
-
+  //trouver le prochain id libre pour la nouvelle question 
   getNextId() {
     const questions = parse(this.jsonDbPath, this.defaultQuestions);
     let nextId;
@@ -39,7 +39,6 @@ class Questions {
 
   /**
    * Returns all questions
-   * @returns {Array} Array of pizzas
    */
   getAll() {
     const questions = parse(this.jsonDbPath, this.defaultQuestions);
@@ -47,9 +46,9 @@ class Questions {
   }
 
   /**
-   * Returns the questions identified by id
-   * @param {number} id - id of the pizza to find
-   * @returns {object} the pizza found or undefined if the id does not lead to a pizza
+   * Returns the question identified by id with the 4 answers
+   * @param {number} id - id of the questions to find
+   * @returns {object} the question  found
    */
   getOne(id) {
     const questions = parse(this.jsonDbPath, this.defaultQuestions);
@@ -58,7 +57,7 @@ class Questions {
 
     return questions[foundIndex];
   }
-
+  //Returns only the question
   getQuestion(id){
     const questions= parse(this.jsonDbPath, this.defaultQuestions);
     const foundIndex= questions.findIndex((question)=> question.id==id);
@@ -66,7 +65,7 @@ class Questions {
 
     return questions[foundIndex].question;
   }
-
+  //get the correct answer 
   getAnswer(id){
     const questions= parse(this.jsonDbPath, this.defaultQuestions);
     const foundIndex= questions.findIndex((question)=> question.id==id);
@@ -74,7 +73,7 @@ class Questions {
 
     return questions[foundIndex].correct_answer;
   }
-
+  //get the 3 others incorrect answers
   getIncorrect(id){
     const questions= parse(this.jsonDbPath, this.defaultQuestions);
     const foundIndex= questions.findIndex((question)=> question.id==id);

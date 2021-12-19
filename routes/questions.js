@@ -21,14 +21,14 @@ router.get("/:id", function (req, res) {
   return res.json(question);
 });
 
-
+//get question by its id
 router.get("/question/:id", function(req,res){
   const result =   questionModel.getQuestion(req.params.id)
   if(!result) res.sendStatus(404).end();
   res.send(result);
 });
 
-
+//get correct answer by question's id 
 router.get("/answer/:id", function(req,res){
   console.log(`GET /questions/answer/${req.params.id}`);
 
@@ -38,7 +38,7 @@ router.get("/answer/:id", function(req,res){
 
   return res.json(question);
 });
-
+//get the incorrect answers by a question's id 
 router.get("/incorrect/:id", function(req,res){
   console.log(`GET /questions/incorrect/${req.params.id}`);
 

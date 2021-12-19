@@ -54,7 +54,7 @@ router.post("/register", async function (req, res, next) {
 
   return res.json(authenticatedUser);
 });
-
+//add points to a user 
 router.post("/addPoints/:id/:score", async  function (req,res,next){
   console.log(`PUT /users/addPoints/${req.params.id}/${req.params.score}`);
   const user= await userModel.addPoints(

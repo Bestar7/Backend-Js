@@ -38,7 +38,7 @@ router.post("/", function (req, res) {
   return res.json(salon);
 });
 
-
+//add a player to a salon by idSalon
 router.put("/addPlayer/:id/:idSalon", function(req,res){
 
   if(req.body) return res.status(400).end();
@@ -48,7 +48,7 @@ router.put("/addPlayer/:id/:idSalon", function(req,res){
     if (!salon) return res.status(404).end();
     return res.json(salon);
 });
-
+//get all the players in a salon
 router.get("/getPlayers/:id", async function(req,res){
   console.log(`GET /salons/getPlayers/${req.params.id}`);
 
