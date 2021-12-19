@@ -12,7 +12,7 @@ const defaultUsers = [
     email:"quentin.garwig@hotmail.com",
     password:"$2y$10$LApdSBHDMTC1j/KVBe0umeq8zwljgjvrXu3dciA0IG9B.xr4OcN1m",
     pseudo:null,
-    score:INT('100')
+    score:100
 
   },
   
