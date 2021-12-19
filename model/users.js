@@ -70,12 +70,11 @@ class Users {
       console.log("cet email existe déjà");
     }
     const users= parse(this.jsonDbPath,this.defaultUsers);
-    const hashedPassword= await bcrypt.hash(password, saltRounds);
 
     const newUser={
       
       email: email,
-      password : hashedPassword,
+      password : password,
       
     };
     users.push(newUser);
