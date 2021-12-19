@@ -12,7 +12,11 @@ const defaultUsers = [
     email:"quentin.garwig@hotmail.com",
     password:"$2y$10$LApdSBHDMTC1j/KVBe0umeq8zwljgjvrXu3dciA0IG9B.xr4OcN1m",
     pseudo:null,
+<<<<<<< HEAD
     score:0
+=======
+    score:100
+>>>>>>> 4eaae50fd4efc04352a771f5a84af082de1e1eea
 
   },
   
@@ -70,12 +74,11 @@ class Users {
       console.log("cet email existe déjà");
     }
     const users= parse(this.jsonDbPath,this.defaultUsers);
-    const hashedPassword= await bcrypt.hash(password, saltRounds);
 
     const newUser={
       
       email: email,
-      password : hashedPassword,
+      password : password,
       
     };
     users.push(newUser);
