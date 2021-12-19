@@ -39,17 +39,17 @@ router.post("/", function (req, res) {
 });
 
 
-router.post("/addplayer/:id/:idSalon", function(req,res){
-  console.log(`POST /salons/addplayer/${req.params.id}/${req.params.idSalon}`);
+router.put("/addPlayer/:id/:idSalon", function(req,res){
 
-  
+  if(req.body) return res.status(400).end();
+
     const salon = salonModel.addPlayer(req.params.id, req.params.idSalon);
     // Send an error code 'Not Found' if the pizza was not found :
     if (!salon) return res.status(404).end();
     return res.json(salon);
 });
 
-router.get("/getPlayers/:id",function(req,res){
+router.get("/getPlayers/:id", async function(req,res){
   console.log(`GET /salons/getPlayers/${req.params.id}`);
 
   const salon = salonModel.getPlayers(req.params.id);
@@ -60,6 +60,8 @@ router.get("/getPlayers/:id",function(req,res){
 
 
 });
+
+
 
 
 

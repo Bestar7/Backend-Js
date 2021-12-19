@@ -10,13 +10,12 @@ GET http://localhost:3000/salons/1
 ### Create a salon
 POST http://localhost:3000/salons
 
-{
-    "players":"moi"
-}
+
 
 ###Ajouter un joueur au salon
-POST http://localhost:3000/salons/addplayer/1/14
+PUT http://localhost:3000/salons/addPlayer/1/15
 
 
 ###get players of a salon
-GET http://localhost:3000/salons/getPlayers/14
+GET http://localhost:3000/salons/getPlayers/15
+

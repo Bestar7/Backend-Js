@@ -54,13 +54,22 @@ class Salons {
     return salons[foundIndex];
   }
 
+  deleteOne(id) {
+    const salons = parse(this.jsonDbPath, this.defaultSalons);
+    const foundIndex = salons.findIndex((salon) => salon.id == id);
+    if (foundIndex < 0) return;
+    const salonDeleted = salon.splice(foundIndex, 1);
+    serialize(this.jsonDbPath, salons);
+
+    return salonDeleted[0];
+  }
+
   creerSalon(body){
     const salons = parse(this.jsonDbPath, this.defaultSalons);
     const newSalon = {
       id: this.getNextId(),
       host:body.player,
-      classement:[body.player],
-      list:[],
+      classement:[],
       ready:false,
       players:[], 
 
@@ -79,18 +88,35 @@ class Salons {
   }
 
   addPlayer(id,idSalon){
-    const salons= parse(this.jsonDbPath, this.defaultSalons);
-    const foundIndex= salons.findIndex((salon)=> salon.id==idSalon);
-    const players= parse(this.jsonDbPath, this.users);
-    const foundIndexPlayer = players.findIndex((user)=> user.id==id);
+    let salon= this.getOne(idSalon);
+    let tabSalon= salon.players;
 
-    if(foundIndexPlayer<0)return;
+    let idDuSalon=salon.id;
+    let hostSalon=salon.host;
+    let classementSalon=salon.classement;
+    let readySalon=salon.ready;
 
-    if(foundIndex<0)return;
+    tabSalon.push(id);
 
-     salons[foundIndex].players[1]=id;
-    return salons[foundIndex];
+    players=tabSalon;
+    this.deleteOne(idSalon);
+    return this.addRoomById(idDuSalon,hostSalon,classementSalon,readySalon,players);
+  }
+    
+    
+  addRoomById(id, host, classement, ready, players) {
+    const salons = parse(this.jsonDbPath, this.defaultSalons);
+    const newSalon = {
+      id: id,
+      host:host,
+      classement:classement,
+      ready:ready,
+      players:players,
+    };
+    salons.push(newSalon);
+    serialize(this.jsonDbPath, salons);
 
+    return newSalon;
   }
 
   getPlayers(id){

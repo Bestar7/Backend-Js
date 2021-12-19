@@ -1,6 +1,6 @@
 ######### NORMAL OPERATION  ###########
 
-### Read all pizzas
+### Read all question
 GET http://localhost:3000/questions
 
 ### Read pizza identified by 3,2 doesn't exist

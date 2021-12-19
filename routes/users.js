@@ -21,6 +21,18 @@ router.get("/:id", function (req, res) {
   return res.json(user);
 });
 
+//get score by its id 
+
+router.get("/score/:id", function (req, res) {
+  console.log(`GET /users/score/${req.params.id}`);
+
+  const user = userModel.getScore(req.params.id);
+  // Send an error code '404 Not Found' if the user was not found
+  if (!user) return res.status(404).end();
+
+
+  return res.json(user);
+});
 /*register a user : POST /users/register */
 router.post("/register", async function (req, res, next) {
   // Send an error code '400 Bad request' if the body parameters are not valid
@@ -42,6 +54,20 @@ router.post("/register", async function (req, res, next) {
 
   return res.json(authenticatedUser);
 });
+
+router.post("/addPoints/:id/:score", async  function (req,res,next){
+  console.log(`PUT /users/addPoints/${req.params.id}/${req.params.score}`);
+  const user= await userModel.addPoints(
+    req.params.id,
+    req.params.score
+  );
+  return res.json(user);
+
+});
+
+
+
+
 
 
 /* login a user : POST /users/login */

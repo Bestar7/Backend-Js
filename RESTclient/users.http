@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
   
-  "email": "quentin@hotmail.zob",
+  "email": "tom@hotmail.zob",
   "password":"abc"
  
 
@@ -27,7 +27,15 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-    "email":"quentin@hotmail.zob",
+    "email":"tom@hotmail.zob",
     "password":"abc"
 }
+
+###get a score from a user from it id 
+GET http://localhost:3000/users/score/1
+Content-Type: application/json
+
+###put points to a user 
+POST http://localhost:3000/users/addPoints/1/200
+Content-Type: application/json
 

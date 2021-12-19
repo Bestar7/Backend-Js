@@ -11,7 +11,8 @@ const defaultUsers = [
   {id:1,
     email:"quentin.garwig@hotmail.com",
     password:"$2y$10$LApdSBHDMTC1j/KVBe0umeq8zwljgjvrXu3dciA0IG9B.xr4OcN1m",
-    pseudo:null
+    pseudo:null,
+    score:INT('100')
 
   },
   
@@ -43,7 +44,7 @@ class Users {
   }
 
   /**
-   * Returns the pizza identified by id
+   * Returns the user identified by id
    * @param {number} id - id of the pizza to find
    * @returns {object} the pizza found or undefined if the id does not lead to a pizza
    */
@@ -113,6 +114,22 @@ class Users {
     else nextId = users[users.length - 1].id + 1;
 
     return nextId;
+  }
+
+  addPoints(id,score){
+    const users = parse(this.jsonDbPath, this.defaultUsers);
+    const foundIndex = users.findIndex((user) => user.id == id);
+    if (foundIndex < 0) return;
+    users[foundIndex].score+=score;
+    return users[foundIndex].score;
+  }
+
+  getScore(id){
+    const users = parse(this.jsonDbPath, this.defaultUsers);
+    const foundIndex = users.findIndex((user) => user.id == id);
+    if (foundIndex < 0) return;
+
+    return users[foundIndex].score;
   }
 
   
